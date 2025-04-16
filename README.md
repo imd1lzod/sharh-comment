@@ -1,8 +1,7 @@
 # Comment & Review qoldirish platformasi -> API
 
 ## Loyihaning maqsadi
-    Foydalanuvchilar biznes turini qidirishi, sortlashi, reviewlarni ko'rishi va comment qoldira olishi kerak, Biznes egalari esa o'z profiliga ega bo'lib sharhlarga javob yoza olishi, va reviewlaarni statistikalarini kora olishi kerak.
-
+    Foydalanuvchilar o'zi xohlagan biznes turini qidirishi, oldinga xaridorlarning fikrlarni ko'rib to'g'ri qaror qabul qilishga yordam berish
 ## Funksional talablar:
     1. Foydalanuvchilar
         - Register qila olishi
