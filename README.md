@@ -32,16 +32,28 @@
         - email
         - password
         - image
+        - createdAt
+        - isAdmin
+        -phoneNumber
 
-    2. Business model
+    2. Business
         - name
         - description
-        - category
         - address
+        - location
         - website
-        - rating 
-        - totalreviews
+        - imagesUrl
+        - categoryId
 
     3. Review
         - rating
         - comment    
+        - userId
+        - businessId
+        - createdAt
+
+    4. Category
+        - name
+        - description
+        - rating 
+        - totalReviews
