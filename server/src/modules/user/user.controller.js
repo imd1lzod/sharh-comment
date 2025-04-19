@@ -60,11 +60,28 @@ class UserController {
       const { name, email, password } = req.body
 
       await this.#userService.updateProfile(id, name, email, password)
+      
+      res.send({
+        message: "User tozalandi"
+      })
     } catch (error) {
       next(error)
     }
   }
 
+  deleteUser = async (req, res, next) => {
+    try {
+      const { id } = req.params
+
+      await this.#userService.deleteUser(id)
+
+      res.send({
+        message: "User tozalandi"
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default new UserController()

@@ -1,5 +1,7 @@
+import jwtConfig from "../../config/jwt.config.js";
 import { comparePassword, hashPassword } from "./user-hash-password.js";
 import userModel from "./user.model.js";
+import jwt from "jsonwebtoken"
 
 class UserService {
     #userModel
@@ -20,30 +22,54 @@ class UserService {
     }
     
     register = async (name, email, password, phoneNumber) => {
+
+        const hashedPassword = await hashPassword(password)
         await this.#userModel.create({
             name: name,
             email: email,
-            password: password,
+            password: hashedPassword,
             phoneNumber: phoneNumber
         })
 
-        const hashedPassword = await hashPassword(password)
+        
 
         return "User  muvaffaqiyatli yaaratildi"
     }
 
     login = async (email, password) => {
-        const foundedUser = await this.#userModel.findOne(email)
+        const user = await this.#userModel.findOne({email: email})
 
-        if (!foundedUser) {
+        if (!user) {
             return "User topilmadi"
         }
 
-        const isMatch = await comparePassword(password, foundedUser.password)
+        const isMatch = await comparePassword(password, user.password)
 
         if (!isMatch) {
             return "Parol xato"
         }
+
+        const accessToken = jwt.sign(
+            {id: user.id, role: user.role},
+            jwtConfig.ACCESS_TOKEN_SECRET,
+            {
+                expiresIn: jwtConfig.ACCESS_TOKEN_EXPIRE,
+                algorithm: "HS256"
+            }
+        )
+
+        const refreshToken = jwt.sign(
+            {id: user.id, role: user.role},
+            jwtConfig.ACCESS_TOKEN_SECRET,
+            {
+                expiresIn: jwtConfig.ACCESS_TOKEN_EXPIRE,
+                algorithm: "HS256"
+            }
+        )
+
+        res.cookie("accessToken", accessToken)
+        res.cookie("refreshToken", refreshToken)
+
 
         return "User muvvaffaqiyatli ro'yxatdan o'tdi"
     }
@@ -70,6 +96,12 @@ class UserService {
         }
 
         return updatedUser
+    }
+
+    deleteUser = async (id) => {
+        await this.#userModel.findByIdAndDelete(id)
+
+        return "User tozlandi"
     }
 }
 

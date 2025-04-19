@@ -32,9 +32,9 @@
         - email
         - password
         - image
+        - role
+        - phoneNumber
         - createdAt
-        - isAdmin
-        -phoneNumber
 
     2. Business
         - name
@@ -44,6 +44,7 @@
         - website
         - imagesUrl
         - categoryId
+        - ownerId
 
     3. Review
         - rating
@@ -51,9 +52,8 @@
         - userId
         - businessId
         - createdAt
+        - updatedAt
 
     4. Category
         - name
         - description
-        - rating 
-        - totalReviews

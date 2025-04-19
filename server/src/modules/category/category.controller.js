@@ -18,8 +18,8 @@ class CategoryController {
   createCategory = async (req, res, next) => {
     try {
 
-      const { name, description, rating, totalReviews } = req.body;
-      await this.#categoryService.createCategory(name, description, rating, totalReviews)
+      const { name, description } = req.body;
+      await this.#categoryService.createCategory(name, description)
       res.send({
         message: "Category yaratildi",
       });

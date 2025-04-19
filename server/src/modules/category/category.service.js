@@ -19,8 +19,8 @@ class CategoryService {
         }
     }
 
-    getOneCategory = async (name) => {
-        const category = this.#categoryModel.findOne(name)
+    getOneCategory = async (id) => {
+        const category = await this.#categoryModel.findById(id)
 
         return {
             message: "succes",
@@ -28,13 +28,11 @@ class CategoryService {
         }
     }
 
-    createCategory = async (name, description, rating, totalReviews) => {
+    createCategory = async (name, description) => {
         await this.#categoryModel.create(
             {
                 name: name,
                 description: description,
-                rating: rating,
-                totalReviews: totalReviews
             }
         )
 

@@ -10,17 +10,7 @@ const categorySchema = new mongoose.Schema(
         },
         description: {
             type: String,
-            minLength: 1
         },
-        rating: {
-            type: Number,
-            min: 1,
-            max: 5,
-            required: true
-        },
-        totalReviews: {
-            type: Number
-        }
     },
 {
     collection: "categories",
@@ -29,4 +19,4 @@ const categorySchema = new mongoose.Schema(
 }
 )
 
-export default mongoose.model("Category", categorySchema)
+export default mongoose.model("Categories", categorySchema)
